@@ -29,16 +29,16 @@ There is no clock. Each gate is a fact read from a node or from origin, in this 
 1. **Mini node synced.** Existing TN10 kaspad, existing data, no wipe. `isSynced` true, DAA moving. Mini notifies Build and TN10 ops.
 2. **Desk node synced.** Existing private TN10 kaspad, existing data, loopback only, started with `pwsh`. No wipe. Synced, DAA moving.
 3. **No other runner.** No Tuesday, Wednesday, or pre-run 1 runner or waiter on any machine. Lane above the abort line.
-4. **Paste.** The operator sends GO-DESK, GO-MINI, and GO-BOT. That is the arm.
-5. **Open.** The desk pushes `logs/PRE-RUN-OPEN.md` here. Mini then pushes `logs/MINI-ARMED.md` here.
-6. **Hashes.** The desk pushes `hashes/SIXTEEN.md`: sixteen rows and an On origin line.
-7. **Families, then senders.** Families start. Then 1,013, 2,027, 3,040, the HOLD-4 minute, and RETURN.
+4. **Hashes.** The desk pushes `hashes/SIXTEEN.md` with [tools/sixteen](tools/sixteen/README.md): sixteen rows and an On origin line. It is not an arm and not a send, and it does not wait for the paste.
+5. **Paste.** The operator sends GO-DESK, GO-MINI, and GO-BOT. That is the arm.
+6. **Open.** The desk pushes `logs/PRE-RUN-OPEN.md` here. Mini then pushes `logs/MINI-ARMED.md` here.
+7. **Families, then senders.** The genesis transactions come from the bundle that wrote `hashes/SIXTEEN.md`. Nothing rebuilds it. Families start. Then 1,013, 2,027, 3,040, the HOLD-4 minute, and RETURN.
 
 ## Who does what
 
 | Who | Role | When to start | What not to do |
 |---|---|---|---|
-| **Desk (Build)** | Sends the sixteen families and the payment offers. Does not count the chain. Publishes `logs/PRE-RUN-OPEN.md`, then `hashes/SIXTEEN.md`, then `counts/desk/` as each step closes. | After gates 1–4. First sentence: `DESK. I send on pre-run 2. I do not count. This is not Wednesday.` No family submit before gate 6. | Do not start from a chat sentence. Do not count. Do not stop or wipe the desk TN10 node. Do not use Windows PowerShell 5.1 or start `KaspaPublicNode`. Do not touch the desk devnet. Do not use the 8- or 32-family publisher. Do not drop a HOLD-3 node to free one for the bot. Do not start a second runner. |
+| **Desk (Build)** | Sends the sixteen families and the payment offers. Does not count the chain. Publishes `hashes/SIXTEEN.md` first, then `logs/PRE-RUN-OPEN.md`, then `counts/desk/` as each step closes. | After gates 1–4. First sentence: `DESK. I send on pre-run 2. I do not count. This is not Wednesday.` No family submit before `hashes/SIXTEEN.md` has an On origin line and `MINI-ARMED` is on origin. | Do not start from a chat sentence. Do not count. Do not stop or wipe the desk TN10 node. Do not use Windows PowerShell 5.1 or start `KaspaPublicNode`. Do not touch the desk devnet. Do not use the 8- or 32-family publisher. Do not drop a HOLD-3 node to free one for the bot. Do not start a second runner. |
 | **Mini** | The only chain counter. Does not send, mine, or hold a key. Publishes `logs/MINI-ARMED.md` after `PRE-RUN-OPEN` is on origin here, then `counts/mini/` when the matching desk file is on origin. | Node synced and Build notified first. Arms only after the operator pastes [GO-MINI.md](GO-MINI.md) and this repo's `PRE-RUN-OPEN` is on origin. First sentence: `MINI. I count pre-run 2. I do not send. This is not Wednesday.` | Do not send. Do not wipe chain data. Do not resume pre-run 1 or start its runner tasks or Tuesday's. Do not count before the gate file. |
 | **Bot (TN10 ops)** | Sends payments in the HOLD-4 minute only, on one leftover synced public node outside the desk HOLD-3 set, or publishes a legal `NO SEND`. Publishes `counts/bot/HOLD-4.md`. Does not count the chain. No local node. | After the operator pastes [GO-BOT.md](GO-BOT.md). Sends only after `PRE-RUN-OPEN`, `hashes/SIXTEEN.md`, and desk `counts/desk/HOLD-3.md` are on origin here, in the pinned HOLD-4 minute. First sentence: `GROKBOT. I send payments on the pre-run 2 HOLD-4 only. I do not count. This is not Wednesday.` Stops on this repo's `logs/BOT-HALT.md` or `logs/FAILED.md`. | Do not send on HOLD-1, HOLD-2, HOLD-3, or RETURN. Do not start a second waiter. Do not treat chat or a pre-run 1 file as the start. |
 
