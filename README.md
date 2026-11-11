@@ -43,11 +43,11 @@ Nothing below is a time. Each gate is a fact read from a node or from origin.
 | 1 | Mini's existing TN10 node is up from its own data, no wipe, `isSynced` true, DAA moving. Mini has notified Build and TN10 ops. | Mini |
 | 2 | The desk's existing private TN10 node is up from its own data, started with PowerShell 7, no wipe, synced, DAA moving. | Desk |
 | 3 | No Tuesday, Wednesday, or pre-run 1 runner or waiter is in a process list. The lane is above the abort line. | Desk, bot |
-| 4 | The operator sends the three pastes. That send is the arm. | Operator |
-| 5 | The desk pushes `logs/PRE-RUN-OPEN.md` in this repo. | Desk |
-| 6 | Mini pushes `logs/MINI-ARMED.md` in this repo. | Mini |
-| 7 | The desk pushes `hashes/SIXTEEN.md`: sixteen rows and an On origin line. A sixteen-family path, not the old 8- or 32-family publisher. | Desk |
-| 8 | Families, then payments: 1,013, 2,027, 3,040, the HOLD-4 minute at 4,053, then 1,013 again. | Desk; the bot in HOLD-4 only |
+| 4 | Hashes first. The desk pushes `hashes/SIXTEEN.md` with [tools/sixteen](tools/sixteen/README.md): sixteen rows and an On origin line. A sixteen-family path, not the old 8- or 32-family publisher. This file is not an arm and not a send, and it does not wait for the paste. | Desk |
+| 5 | The operator sends the three pastes. That send is the arm. | Operator |
+| 6 | The desk pushes `logs/PRE-RUN-OPEN.md` in this repo. | Desk |
+| 7 | Mini pushes `logs/MINI-ARMED.md` in this repo. | Mini |
+| 8 | Families, from the genesis bundle that wrote `hashes/SIXTEEN.md`, then payments: 1,013, 2,027, 3,040, the HOLD-4 minute at 4,053, then 1,013 again. | Desk; the bot in HOLD-4 only |
 
 ## What a decent result is
 
