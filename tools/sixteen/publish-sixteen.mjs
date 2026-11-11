@@ -4,10 +4,10 @@
 //   node publish-sixteen.mjs --repo <local clone> --git <full path to git> --gates-only
 //   node publish-sixteen.mjs --repo <local clone> --git <full path to git> --file <built SIXTEEN.md> --bundle <private bundle.json> [--check-only]
 //
-// Gates read from origin/main before any write (README start gates 5-7):
-//   logs/PRE-RUN-OPEN.md has PRE_RUN_OPEN, logs/MINI-ARMED.md has MINI_ARMED, logs/BOT-HALT.md and logs/FAILED.md
-//   are absent, and hashes/SIXTEEN.md is absent (no republish). The file must verify, match the bundle row for row,
-//   and must not be a fixture. A fixture is refused unless origin is a local test path (never GitHub).
+// Hashes first: this file lands before the arm. PRE-RUN-OPEN and MINI-ARMED are not gates for it (they are read and
+// reported only). Gates read from origin/main before any write: logs/BOT-HALT.md and logs/FAILED.md are absent, and
+// hashes/SIXTEEN.md is absent (no republish). The file must verify, match the bundle row for row, and must not be a
+// fixture. A fixture is refused unless origin is a local test path (never GitHub). Writing it is not an arm and not a send.
 import { spawnSync } from "node:child_process";
 import fs from "node:fs";
 import path from "node:path";
@@ -50,9 +50,10 @@ const gates = {
   failed: onOrigin("logs/FAILED.md"),
   sixteen_on_origin: onOrigin(REL),
 };
-const held = !gates.pre_run_open ? "pre-run-open-absent" : !gates.mini_armed ? "mini-armed-absent" : gates.bot_halt ? "bot-halt" : gates.failed ? "failed" : gates.sixteen_on_origin ? "sixteen-already-on-origin" : null;
-if (held) stop("held", { held, gates: Object.fromEntries(Object.entries(gates).map(([k, x]) => [k, x ? 1 : 0])) }, 6);
-if (gatesOnly) { say({ ok: 1, mode: "gates-only", gates: "open", pushed: 0 }); process.exit(0); }
+const bits = Object.fromEntries(Object.entries(gates).map(([k, x]) => [k, x ? 1 : 0]));
+const held = gates.bot_halt ? "bot-halt" : gates.failed ? "failed" : gates.sixteen_on_origin ? "sixteen-already-on-origin" : null;
+if (held) stop("held", { held, gates: bits }, 6);
+if (gatesOnly) { say({ ok: 1, mode: "gates-only", gates: "open", seen: bits, pushed: 0 }); process.exit(0); }
 
 // ---- the file itself ---------------------------------------------------------------------------------------------
 const text = fs.readFileSync(file, "utf8");
