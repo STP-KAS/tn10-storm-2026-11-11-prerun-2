@@ -4,12 +4,12 @@
 
 There is no T0. There is no public clock. There is no latest minute. A scored target stays until three clean minutes land, or until one repair pass is done.
 
-Nothing in this page starts until the gates are true: Mini's TN10 node is synced with DAA moving and Mini has notified Build and TN10 ops; the desk's private TN10 node is up from its own data (PowerShell 7, no wipe) and synced; no Tuesday, Wednesday, or pre-run 1 runner is up; the operator has sent the three pastes; and this repo's `logs/PRE-RUN-OPEN.md` is on origin.
+The hash file comes first and does not wait for the paste (see Order, step 2). Nothing else in this page starts until the gates are true: Mini's TN10 node is synced with DAA moving and Mini has notified Build and TN10 ops; the desk's private TN10 node is up from its own data (PowerShell 7, no wipe) and synced; no Tuesday, Wednesday, or pre-run 1 runner is up; the operator has sent the three pastes; and this repo's `logs/PRE-RUN-OPEN.md` is on origin.
 
 ## Order
 
 1. **Nodes live.** Both TN10 nodes synced, DAA moving. No wipe.
-2. **Hashes first.** [hashes/SIXTEEN.md](../hashes/README.md): sixteen rows, family label, cohort, sha256 of the lowercase hex covenant id, and an On origin line. No On origin line, no family submit. The old 8- or 32-family publisher is not used.
+2. **Hashes first.** [hashes/SIXTEEN.md](../hashes/README.md): sixteen rows, family label, cohort, sha256 of the lowercase hex covenant id, and an On origin line. It is written before the paste and is not an arm or a send. No On origin line, no family submit. The old 8- or 32-family publisher is not used.
 3. **Families.** The sixteen covenant families start.
 4. **Senders, step by step.** The payment offers below, in order.
 
@@ -21,7 +21,7 @@ Nothing in this page starts until the gates are true: Mini's TN10 node is synced
 | 4 | 4,053 | desk, and the bot if a free synced node answers | HOLD-4 | observation |
 | 5 | 1,013 | desk | RETURN | scored |
 
-Sixteen families, offer 1.2 hop/s, boson, stagger 0, from the first family submit until RETURN closes. Families 1–13 pay 100 sompi/gram. Families 14–16 pay 200. Payments pay 150. The sixteen are one build, one family-sender process, one node set. The rate is per family. A single rate for the process is not a fee difference. A second builder is not the fix. If the funding coins are not one size, the file says so and does not call the fee the whole cause.
+Sixteen families, offer 1.2 hop/s, boson, stagger 0, from the first family submit until RETURN closes. Families 1–13 pay 100 sompi/gram. Families 14–16 pay 200. Payments pay 150. The sixteen are one build, one family-sender process, one node set. The rate is per family. In the one builder the rate rides on each hop, so a hop's fee is its mass times its family's rate ([tools/sixteen](../tools/sixteen/README.md#hop-fees)). A single rate for the process is not a fee difference. A second builder is not the fix. If the funding coins are not one size, the file says so and does not call the fee the whole cause.
 
 A scored minute is clean when the desk's submit path is synced, that node's DAA is moving, submit-OK is within 10 percent, rejects are logged as rate or full, no sender-off, pool-low, node-drop, or proc-exit, and every family is still attempting. Mini's marks do not gate the next offer.
 
