@@ -9,3 +9,5 @@ One file, `SIXTEEN.md`. Sixteen rows. Each row is the family label, the cohort, 
 Fixed is the local write. On origin is the commit time read from origin after the push. A file with rows and no On origin line is not proof. No file, no send.
 
 The old desk publisher writes 8 or 32 families. It is not used for this pre-run. A file with 8 or 32 rows is not `SIXTEEN.md`. A hash is never invented. Until a sixteen-family path exists on the desk, this folder stays empty and nothing sends.
+
+The sixteen-family path is [tools/sixteen](../tools/sixteen/README.md). It writes this file only when `PRE-RUN-OPEN` and `MINI-ARMED` are on origin, from sixteen genesis transactions built on the desk and kept for the family submit. Until then this folder stays empty.
