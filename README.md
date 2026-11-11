@@ -10,6 +10,16 @@
 
 **Pre-run 1 failed and is closed.** It is [tn10-storm-2026-11-11-prerun](https://github.com/STP-KAS/tn10-storm-2026-11-11-prerun). Its open, armed, halt, and failed files are history. They are not gates for this repo. This repo starts from that repo's [locks/LOCKED.md](https://github.com/STP-KAS/tn10-storm-2026-11-11-prerun/blob/main/locks/LOCKED.md), copied here as [locks/LOCKED.md](locks/LOCKED.md).
 
+## What this measures
+
+The question is what covenants do under different network circumstances: how they behave under congestion, and with competitors on the same network.
+
+Some covenants use a basic transaction fee, and some use a priority fee. In part of the load, senders also pay an increased fee. Load is added in thirds: one-third, two-thirds, three-thirds, and four-thirds if that last step can be held.
+
+## Why this matters
+
+Covenants under load reveal behavior that steady-state testing cannot. The fee-rate differences and the load steps exist to surface that behavior. The playbook of fixes exists so a later run starts from ground that is already known.
+
 ## Sum-up
 
 This pre-run is target-oriented. There is no T0, no public clock, no hash clock, and no latest minute. Nodes live, hashes first, then the families, then the senders step by step. The offers are the same offers. The machines are the same machines. The result here is a rehearsal reading. It is not Wednesday's count and it is not a number for Pulse.
