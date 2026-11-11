@@ -6,7 +6,7 @@ Every file below is absent until its writer publishes it in **this** repo. Pre-r
 
 | File | Who writes it | When |
 |---|---|---|
-| PRE-RUN-OPEN.md | the desk | after the operator's paste, once both TN10 nodes are synced, Mini has notified Build, and no other runner is up, before the hashes. One line: `PRE_RUN_OPEN` and a UTC timestamp |
+| PRE-RUN-OPEN.md | the desk | after the operator's paste, once both TN10 nodes are synced, Mini has notified Build, and no other runner is up. `hashes/SIXTEEN.md` comes first and may already be on origin. One line: `PRE_RUN_OPEN` and a UTC timestamp |
 | MINI-ARMED.md | Mini | after the operator pastes GO-MINI and `PRE-RUN-OPEN` is on origin. One line: `MINI_ARMED` and a UTC timestamp |
 | FIXES.md | the desk | each repair. UTC time, what failed, what changed, why |
 | METHOD.md | the desk | when RETURN is on origin, met or `NOT MET` |
