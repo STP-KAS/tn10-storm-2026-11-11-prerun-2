@@ -111,4 +111,11 @@ Nothing yet. When a fix works, append it here, one block per fix, in the form sh
 - Why that change stays: a genesis launch path must start with launch::storm-2026-10-. Any other path does not build, and then there is no hash file and no send.
 ```
 
+```
+- 2026-11-11T15:23:08Z.
+- What failed: HOLD-1 was met. In HOLD-2 the desk runner marked minutes dirty because families logged STALL marks, and the reason came out blank. The runner process was stopped mid-run to apply that scoring fix. Its children (builder broker, builder, coordinator, family sender, payment senders) died with it. The restarted runner found the family processes gone and wrote logs/FAILED.md. The run is not resumed.
+- What was changed: nothing in this repo's run. The next repo carries three lines. (a) A runner is never restarted mid-run to apply a scoring fix. The run is left alone and the fix goes into a later repo. (b) If a later design must ever replace a runner, its children (builder, broker, coordinator, family sender, payment senders) are started detached, so they survive the parent. (c) A family STALL (no hop of that family landing for a while) is not dirt for HOLD scoring. GO-DESK's clean minute does not count it. A stall at the two-thirds rate is part of the congestion question, and it is logged per minute.
+- Why that change stays: a scoring fix applied by restarting the runner killed a run that was sending cleanly. A stall is data about congestion and competition, not a sender fault.
+```
+
 The go files in this repo stay as they were at the paste. A next repo copies this page and bakes the new lines into its own pastes.
