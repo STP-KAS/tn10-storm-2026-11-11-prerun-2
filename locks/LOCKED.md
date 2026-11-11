@@ -104,4 +104,11 @@ These lines are baked into this repo's own pastes. They come from the worked fix
 
 Nothing yet. When a fix works, append it here, one block per fix, in the form shown above: UTC time, what failed, what was changed, why that change stays.
 
+```
+- 2026-11-11T12:22:54Z.
+- What failed: pre-run 1's sixteen-family hash step stopped with HASH_STOP build. Its genesis launch paths began launch::prerun1-, and the reference builder refuses any genesis launch path outside its allow-list ("launch path not on the storm allow-list").
+- What was changed: pre-run 2's genesis launch paths begin launch::storm-2026-10-, and the hash tool refuses any other prefix before it reads the node. The desk check then built sixteen genesis transactions and sixteen rows.
+- Why that change stays: a genesis launch path must start with launch::storm-2026-10-. Any other path does not build, and then there is no hash file and no send.
+```
+
 The go files in this repo stay as they were at the paste. A next repo copies this page and bakes the new lines into its own pastes.
