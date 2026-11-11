@@ -32,19 +32,19 @@ Stop, and do not start a runner, if any one of these is true:
 - Your own TN10 node is not up, not synced, or its DAA is not moving.
 - A Tuesday, Wednesday, or pre-run 1 runner or waiter is in the process list.
 - The family lane would fall under **2,500 coins** or **18,000 usable tKAS**.
-- You have no sixteen-family hash path. The old 8- or 32-family publisher does not count.
+- You have no sixteen-family hash path. The old 8- or 32-family publisher does not count. The path is [tools/sixteen](tools/sixteen/README.md).
 
 Say `HELD` and the reason: `mini-not-synced`, `desk-node-down`, `other-runner`, `lane-held`, or `no-sixteen-hash-path`. Do not start a waiter. The operator pastes this file again when the gate is true.
 
 When the gate is open, this read may start one runner. Publish [logs/PRE-RUN-OPEN.md](logs/README.md) in this repo. One line: `PRE_RUN_OPEN` and the UTC time. Mini and the bot read it from origin. A sentence in chat is not that line. Pre-run 1's `PRE-RUN-OPEN` is not that line. The chat is not the runner. A second runner is a fault.
 
-Before the sixteen hashes, check each public node in the local config. The check is version, synced, DAA within a few blocks of the others, UTXO index, and answer time. Drop a node that fails. Do not put one back after the first family submit. The local log keeps the count checked and pass or fail. No names. The 6 Oct per-node hold is about 571 seen accepted. If the kept nodes times 571 sit under 1,824, the local log says HOLD-2 is the expected first miss. Leave the offers as they are. This check does not stop the desk node.
+Before the first family submit, check each public node in the local config. The check is version, synced, DAA within a few blocks of the others, UTXO index, and answer time. Drop a node that fails. Do not put one back after the first family submit. The local log keeps the count checked and pass or fail. No names. The 6 Oct per-node hold is about 571 seen accepted. If the kept nodes times 571 sit under 1,824, the local log says HOLD-2 is the expected first miss. Leave the offers as they are. This check does not stop the desk node.
 
 ## Hashes first
 
 Read [locks/LOCKED.md](locks/LOCKED.md) first. Do not reopen a locked line.
 
-One genesis. Sixteen hashes in [hashes/SIXTEEN.md](hashes/README.md) before the first family submit. Sixteen rows. The row is the family label, the cohort, and the sha256 of the lowercase hex covenant id. Families 1–13 are the floor cohort. Families 14–16 are the double cohort. The id stays off the repo. Fixed is the local write. On origin is the commit time you then read from origin. No On origin line, no send. A file with 8 or 32 rows is not this file. Do not use the old 8- or 32-family publisher. Do not invent a hash.
+One genesis. Sixteen hashes in [hashes/SIXTEEN.md](hashes/README.md) before the first family submit. The file comes first: it may already be on origin before this paste, and it does not wait for `PRE-RUN-OPEN`. If it is on origin, do not rebuild it: submit the genesis transactions from the private bundle that wrote it (`tools/sixteen/submit-sixteen.mjs`). If it is absent, publish it once with `tools/sixteen/sixteen.ps1 -Mode publish`. Sixteen rows. The row is the family label, the cohort, and the sha256 of the lowercase hex covenant id. Families 1–13 are the floor cohort. Families 14–16 are the double cohort. The id stays off the repo. Fixed is the local write. On origin is the commit time you then read from origin. No On origin line, no send. A file with 8 or 32 rows is not this file. Do not use the old 8- or 32-family publisher. Do not invent a hash.
 
 ## Targets
 
@@ -68,7 +68,7 @@ A repair may restart the sender, move the submit to another synced public node, 
 
 The HOLD-4 minute is the first whole UTC minute whose start is at least 3 minutes after the HOLD-3 file's On origin time. Read that time from origin. Publish that minute. If the path is not synced, the first line stays `OBSERVATION` and one line says the path was not synced. Do not open a later minute. Do not chase 4,053. Do not wait for the bot.
 
-Fees, sompi per gram: families 1–13 pay **100**. Families 14–16 pay **200**. Payments pay **150**. The sixteen are one build: one program, one hop shape, one minter size, one token size. That token size is the size this plan calls about 1 tKAS locked per landed hop. Build both cohorts in the one family-sender process, on one node set. The rate is per family. A single rate on the whole process is a miss. Log it. Do not call the fee the cause. Do not start a second builder. If the funding coins are not one size, the file says so and does not call the fee the whole cause. Storage mass can move with the rate, because the fee comes out of the funding coin. That move is the fee. It is not a second knob. Do not read a priority quote. Do not read a fee estimate. A full mempool is logged as full and does not stop that sender. A reject for the rate stops that sender. Leave the fee. Log the miss. Leave the others up.
+Fees, sompi per gram: families 1–13 pay **100**. Families 14–16 pay **200**. Payments pay **150**. The sixteen are one build: one program, one hop shape, one minter size, one token size. That token size is the size this plan calls about 1 tKAS locked per landed hop. Build both cohorts in the one family-sender process, on one node set. The rate is per family: it rides on each hop line to the one builder, so a hop's fee is its mass times 100 or 200 ([tools/sixteen](tools/sixteen/README.md#hop-fees)). A single rate on the whole process is a miss. Log it. Do not call the fee the cause. Do not start a second builder. If the funding coins are not one size, the file says so and does not call the fee the whole cause. Storage mass can move with the rate, because the fee comes out of the funding coin. That move is the fee. It is not a second knob. Do not read a priority quote. Do not read a fee estimate. A full mempool is logged as full and does not stop that sender. A reject for the rate stops that sender. Leave the fee. Log the miss. Leave the others up.
 
 ## What you publish
 
