@@ -1,9 +1,11 @@
 # sixteen.ps1: pre-run 2's sixteen-family hash path on the desk. Run with PowerShell 7 (pwsh).
 # Build the sixteen genesis transactions (no submit), write SIXTEEN.md and the private bundle, then publish it to
 # pre-run 2 origin with an On origin line. Never prints an id. Not the old 8/32 publisher (tn10-hash-publish.*).
+# Hashes first: publish does not wait for PRE-RUN-OPEN or MINI-ARMED. It stops on BOT-HALT, FAILED, or an existing
+# SIXTEEN.md. It is not an arm and not a send. After a publish, do not rebuild: the family submit uses that bundle.
 #
 #   pwsh -NoProfile -File sixteen.ps1 -Mode check     gates on origin + node + coins + build, local only, nothing pushed
-#   pwsh -NoProfile -File sixteen.ps1 -Mode publish   the same build, then push hashes/SIXTEEN.md (gated, two commits)
+#   pwsh -NoProfile -File sixteen.ps1 -Mode publish   the same build, then push hashes/SIXTEEN.md (two commits), once
 #
 # Paths are in sixteen.local.json next to this file (not committed): config, repo, git.
 param([Parameter(Mandatory = $true)][ValidateSet('check', 'publish')][string]$Mode)
