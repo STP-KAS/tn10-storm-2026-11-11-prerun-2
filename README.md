@@ -24,7 +24,7 @@ The fee steps and the load steps are there so we can see what happens at each ra
 
 The cumulative log of this rehearsal lives in [tn-master](https://github.com/STP-KAS/tn-master).
 
-This page is the top-level note for the 11 November 2026 Testnet-10 rehearsal. Each pre-run is its own repo. The lines below are taken from the count, method, failed, and lock files on origin in those repos. Pre-runs 5 to 12 finished through RETURN and are closed; pre-run 13 failed before RETURN and is closed; pre-runs 14, 15 and 16 finished through RETURN and are closed; pre-run 17 failed before RETURN and is closed; pre-runs 18, 19 and 20 finished through RETURN and are closed; no pre-run is running, and pre-run 20 is the last one for now. "MET" in this table means the desk's submit-OK, as scored, unless the row says inclusion.
+This page is the top-level note for the 11 November 2026 Testnet-10 rehearsal. Each pre-run is its own repo. The lines below are taken from the count, method, failed, and lock files on origin in those repos. Pre-runs 5 to 12 finished through RETURN and are closed; pre-run 13 failed before RETURN and is closed; pre-runs 14, 15 and 16 finished through RETURN and are closed; pre-run 17 failed before RETURN and is closed; pre-runs 18, 19 and 20 finished through RETURN and are closed; no pre-run is running. "MET" in this table means the desk's submit-OK, as scored, unless the row says inclusion.
 
 | Pre-run | Repo | Status | One-line lesson |
 |---|---|---|---|
